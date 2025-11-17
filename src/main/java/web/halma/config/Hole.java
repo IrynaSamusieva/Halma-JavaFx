@@ -2,6 +2,7 @@ package web.halma.config;
 
 import javafx.scene.shape.Circle;
 import lombok.Getter;
+import web.halma.controllers.BoardController;
 import web.halma.models.board.field.Field;
 import web.halma.models.board.field.FieldColor;
 import web.halma.models.board.field.FieldState;
@@ -18,6 +19,10 @@ public class Hole {
     @Getter
     private final List<Hole> neighbours = new ArrayList<>();
 
+    public Field getField() {
+        return field;
+    }
+
     public Hole(Circle circle, int[] coordinates, FieldState state) {
         this.circle = circle;
         this.coordinates = coordinates;
@@ -25,8 +30,20 @@ public class Hole {
        // clickHandler();
     }
 
-    public boolean HoleIsOccupied(Field field){
+    public boolean HoleIsOccupied(){
         return field.isOccupied(FieldState.OCCUPIED);
+    }
+
+    public Circle getCircle() {
+        return circle;
+    }
+
+    public int[] getCoordinates() {
+        return coordinates;
+    }
+
+    public void setOccupied() {
+        FieldState state = FieldState.OCCUPIED;
     }
 
     public void findNeighbours() {
@@ -38,6 +55,14 @@ public class Hole {
                 {-1, 1, 0},   // down-left
                 {0, 1, -1}    // down-right
         };
+      for(int i = 0; i<neighboursCoordinates.length; i++){
+          int[] newCoordinate = new int[]{coordinates[0] + neighboursCoordinates[i][0],
+                  coordinates[1] + neighboursCoordinates[i][1], coordinates[2] + neighboursCoordinates[i][2]};
+          Hole neighbour = BoardController.getHole(newCoordinate);
+          if(neighbour != null){
+              neighbours.add(neighbour);
+          }
+      }
     }
 
 
