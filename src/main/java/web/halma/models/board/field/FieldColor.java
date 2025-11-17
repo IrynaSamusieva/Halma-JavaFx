@@ -1,37 +1,37 @@
 package web.halma.models.board.field;
 
-import java.util.Arrays;
-import java.util.List;
+import javafx.scene.paint.Color;
+
 //If i create server-client(?) this can randomly set colors to players
 public enum FieldColor {
     GREEN,
-    PURPLE,
+    MAGENTA,
     BLUE,
     ORANGE,
     YELLOW,
     RED,
-    WHITE;
+    BLACK;
 
-    public static FieldColor getRandomColor(int num) {
+    public static Color getRandomColor(int num) {
         switch (num) {
-            case 0: return GREEN;
-            case 1: return PURPLE;
-            case 2: return BLUE;
-            case 3: return ORANGE;
-            case 4: return YELLOW;
-            case 5: return RED;
-            default: return WHITE;
+            case 0: return Color.GREEN;
+            case 1: return Color.MAGENTA;
+            case 2: return Color.BLUE;
+            case 3: return Color.ORANGE;
+            case 4: return Color.YELLOW;
+            case 5: return Color.RED;
+            default: return Color.BLACK;
         }
     }
     public static FieldColor getEnemy(FieldColor fieldColor){
         switch (fieldColor){
             case GREEN: return ORANGE;
-            case PURPLE: return YELLOW;
+            case MAGENTA: return YELLOW;
             case BLUE: return RED;
             case ORANGE: return GREEN;
-            case YELLOW: return PURPLE;
+            case YELLOW: return MAGENTA;
             case RED: return BLUE;
-            default: return WHITE;
+            default: return BLACK;
         }
     }
 }
