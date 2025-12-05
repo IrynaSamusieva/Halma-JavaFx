@@ -8,13 +8,16 @@ public class Field {
     protected FieldColor color;
     protected FieldState state;
 
-
-    public boolean isFree(FieldState state){
-        return state == FieldState.FREE;
+    public Field(FieldState state) {
+        this.state = state;
     }
 
-    public boolean isOccupied(FieldState state){
-        return state == FieldState.OCCUPIED;
+    public boolean isFree(){
+        return this.state == FieldState.FREE;
+    }
+
+    public boolean isOccupied(){
+        return this.state == FieldState.OCCUPIED;
     }
 
     public FieldColor getColor() {

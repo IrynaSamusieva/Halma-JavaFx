@@ -21,14 +21,19 @@ public class BoardController {
 
     public static Group checkerGroup;
     public static Piece selected = null;
-    private final static List<Hole> holes = new ArrayList<>();
+    public static List<Hole> holes = new ArrayList<>();
 
 
     public void init(){
-
+        clickHandler(root);
+        Piece.init();
+        createHole();
+        checkerGroup = new Group();
+        root.getChildren().add(checkerGroup);
+        startBoard();
     }
     private void startBoard(){
-        InputStream in = getClass().getResourceAsStream("/resources/web.halma/Coord.chc");
+        InputStream in = getClass().getResourceAsStream("/web/halma/Coord.chc");
         try{
             String startBoardCoord = new String(in.readAllBytes());
             String[] parts = startBoardCoord.split("\\r?\\n");
@@ -61,7 +66,7 @@ public class BoardController {
             int posX = Decoder(id.substring(0,2));
             int posY = Decoder(id.substring(2,4));
             int posZ = Decoder(id.substring(4,6));
-            Hole hole = new Hole(circle, new int[] {posX, posY, posZ}, FieldState.FREE);
+            Hole hole = new Hole(circle, new int[] {posX, posY, posZ});
             holes.add(hole);
         }
         for(Hole hole: holes){
@@ -78,7 +83,7 @@ public class BoardController {
 
         }
         current.getField().setState(FieldState.OCCUPIED);
-        Piece piece = new Piece(color, current);
+        Piece piece = new Piece( current, color);
         checkerGroup.getChildren().add(piece);
 
     }
@@ -91,7 +96,7 @@ public class BoardController {
         return null;
     }
 
-    private void ClickHandler(Node node){
+    private void clickHandler(Node node){
         node.setOnMouseClicked(event -> {
             resetColorAllGroup();
             resetColorHoles();
@@ -102,6 +107,12 @@ public class BoardController {
         for(Node node : checkerGroup.getChildren()){
             ((Piece)node).resetColor();
         }
+    }
+    public static void resetCheckers(){
+       checkerGroup.getChildren().clear();
+       for(Hole hole : holes){
+           hole.setOccupied(false);
+       }
     }
     public static void resetColorHoles(){
         for(Hole hole: holes){

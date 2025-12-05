@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Group?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Polygon?>
 
-<AnchorPane fx:id="root" prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="web.halma.controllers.BoardController">
+<AnchorPane fx:id="root" prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="web.halma.controllers.BoardController">
     <children>
 
         <Polygon fill="#c8ced4" layoutX="400.0" layoutY="400.0" points="100.0, 0.0, 50.0, 86.6, -50.0, 86.6, -100.5, 0.5, -50.0, -86.6, 50.0, -86.6" stroke="BLACK" strokeType="INSIDE" />
@@ -75,127 +76,128 @@
       <Line endX="135.79998779296875" endY="140.0" layoutX="269.0" layoutY="422.0" startX="-8.0" startY="-108.39999389648438" />
       <Line endX="180.0" endY="-82.70710754394531" layoutX="226.0" layoutY="320.0" startX="33.79998779296875" startY="165.0" />
       <Line endX="232.4000244140625" endY="194.79998779296875" layoutX="304.0" layoutY="292.0" startX="91.19998168945312" startY="-54.0" />
-      <Circle fill="#29ff1f" layoutX="400.0" layoutY="244.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#29ff1f" layoutX="389.0" layoutY="262.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#29ff1f" layoutX="411.0" layoutY="262.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#29ff1f" layoutX="422.0" layoutY="285.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#29ff1f" layoutX="399.0" layoutY="284.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#29ff1f" layoutX="433.0" layoutY="303.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#29ff1f" layoutX="375.0" layoutY="285.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#29ff1f" layoutX="410.0" layoutY="303.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#29ff1f" layoutX="388.0" layoutY="304.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#29ff1f" layoutX="366.0" layoutY="304.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="375.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="400.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="422.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="444.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="355.0" layoutY="327.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP4N8P4" fill="#29ff1f" layoutX="400.0" layoutY="244.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP4N7P3" fill="#29ff1f" layoutX="389.0" layoutY="262.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP3N7P4" fill="#29ff1f" layoutX="411.0" layoutY="262.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP2N6P4" fill="#29ff1f" layoutX="422.0" layoutY="285.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP3N6P3" fill="#29ff1f" layoutX="399.0" layoutY="284.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP1N5P4" fill="#29ff1f" layoutX="433.0" layoutY="303.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP4N6P2" fill="#29ff1f" layoutX="375.0" layoutY="285.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP2N5P3" fill="#29ff1f" layoutX="410.0" layoutY="303.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP3N5P2" fill="#29ff1f" layoutX="388.0" layoutY="304.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP4N5P1" fill="#29ff1f" layoutX="366.0" layoutY="304.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP3N4P1" fill="#222426" layoutX="375.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP2N4P2" fill="#222426" layoutX="400.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP1N4P3" fill="#222426" layoutX="422.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP0N4P4" fill="#222426" layoutX="444.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP4N4P0" fill="#222426" layoutX="355.0" layoutY="327.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
       <Line endX="60.24041748046875" endY="-52.70709228515625" layoutX="473.0" layoutY="368.0" startX="-78.0" startY="195.20001220703125" />
-      <Circle fill="#b209c1" layoutX="468.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#b209c1" layoutX="487.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#b209c1" layoutX="508.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#b209c1" layoutX="527.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#b209c1" layoutX="517.0" layoutY="343.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#b209c1" layoutX="496.0" layoutY="344.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#b209c1" layoutX="506.0" layoutY="362.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#b209c1" layoutX="476.0" layoutY="342.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#b209c1" layoutX="488.0" layoutY="361.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#b209c1" layoutX="498.0" layoutY="380.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#ff1f32" layoutX="331.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#ff1f32" layoutX="310.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#ff1f32" layoutX="289.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#ff1f32" layoutX="268.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#ff1f32" layoutX="279.0" layoutY="344.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#ff1f32" layoutX="302.0" layoutY="346.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#ff1f32" layoutX="290.0" layoutY="362.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#ff1f32" layoutX="321.0" layoutY="343.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#ff1f32" layoutX="312.0" layoutY="362.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#ff1f32" layoutX="301.0" layoutY="379.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="344.0" layoutY="342.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="365.0" layoutY="342.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="388.0" layoutY="343.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="412.0" layoutY="343.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="434.0" layoutY="343.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="456.0" layoutY="342.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="334.0" layoutY="361.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="354.0" layoutY="361.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="376.0" layoutY="361.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="397.0" layoutY="361.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="421.0" layoutY="361.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="444.0" layoutY="360.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="464.0" layoutY="360.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="325.0" layoutY="379.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="345.0" layoutY="379.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="366.0" layoutY="379.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="387.0" layoutY="380.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="411.0" layoutY="381.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="434.0" layoutY="380.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="456.0" layoutY="379.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="476.0" layoutY="380.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="314.0" layoutY="400.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="334.0" layoutY="399.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="355.0" layoutY="400.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="377.0" layoutY="400.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="399.0" layoutY="400.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="421.0" layoutY="400.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="443.0" layoutY="400.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="465.0" layoutY="400.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="487.0" layoutY="399.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#deff1f" layoutX="265.0" layoutY="476.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#deff1f" layoutX="275.0" layoutY="458.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#deff1f" layoutX="284.0" layoutY="476.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#deff1f" layoutX="285.0" layoutY="444.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#deff1f" layoutX="297.0" layoutY="458.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#deff1f" layoutX="306.0" layoutY="477.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#deff1f" layoutX="330.0" layoutY="476.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#deff1f" layoutX="320.0" layoutY="459.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#deff1f" layoutX="310.0" layoutY="443.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#deff1f" layoutX="299.0" layoutY="423.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="323.0" layoutY="420.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="345.0" layoutY="421.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="367.0" layoutY="419.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="389.0" layoutY="420.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="411.0" layoutY="421.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="433.0" layoutY="421.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="455.0" layoutY="421.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="475.0" layoutY="421.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#311eff" layoutX="501.0" layoutY="422.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="334.0" layoutY="441.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="356.0" layoutY="442.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="378.0" layoutY="439.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="402.0" layoutY="439.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="423.0" layoutY="440.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="444.0" layoutY="441.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="463.0" layoutY="440.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#311eff" layoutX="488.0" layoutY="441.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#311eff" layoutX="508.0" layoutY="441.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#311eff" layoutX="478.0" layoutY="457.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#311eff" layoutX="468.0" layoutY="473.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#311eff" layoutX="501.0" layoutY="459.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#311eff" layoutX="489.0" layoutY="476.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#311eff" layoutX="512.0" layoutY="476.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#311eff" layoutX="522.0" layoutY="459.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#311eff" layoutX="532.0" layoutY="477.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="346.0" layoutY="458.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="369.0" layoutY="458.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="390.0" layoutY="457.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="413.0" layoutY="457.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="433.0" layoutY="458.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="456.0" layoutY="457.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="355.0" layoutY="473.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="379.0" layoutY="474.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="402.0" layoutY="474.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="423.0" layoutY="473.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#222426" layoutX="444.0" layoutY="474.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#ff901f" layoutX="368.0" layoutY="495.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#ff901f" layoutX="392.0" layoutY="495.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#ff901f" layoutX="414.0" layoutY="495.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#ff901f" layoutX="435.0" layoutY="495.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#ff901f" layoutX="422.0" layoutY="516.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#ff901f" layoutX="402.0" layoutY="516.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#ff901f" layoutX="379.0" layoutY="517.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#ff901f" layoutX="390.0" layoutY="537.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#ff901f" layoutX="413.0" layoutY="536.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
-      <Circle fill="#ff901f" layoutX="400.0" layoutY="553.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN1N4P5" fill="#b209c1" layoutX="468.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN2N4P6" fill="#b209c1" layoutX="487.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN3N4P7" fill="#b209c1" layoutX="508.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN4N4P8" fill="#b209c1" layoutX="527.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN4N3P7" fill="#b209c1" layoutX="517.0" layoutY="343.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN3N3P6" fill="#b209c1" layoutX="496.0" layoutY="344.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN4N2P6" fill="#b209c1" layoutX="506.0" layoutY="362.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN2N3P5" fill="#b209c1" layoutX="476.0" layoutY="342.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN3N2P5" fill="#b209c1" layoutX="488.0" layoutY="361.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN4N1P5" fill="#b209c1" layoutX="498.0" layoutY="380.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP5N4N1" fill="#ff1f32" layoutX="331.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP6N4N2" fill="#ff1f32" layoutX="310.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP7N4N3" fill="#ff1f32" layoutX="289.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP8N4N4" fill="#ff1f32" layoutX="268.0" layoutY="326.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP7N3N4" fill="#ff1f32" layoutX="279.0" layoutY="344.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP6N3N3" fill="#ff1f32" layoutX="302.0" layoutY="346.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP6N2N4" fill="#ff1f32" layoutX="290.0" layoutY="362.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP5N3N2" fill="#ff1f32" layoutX="321.0" layoutY="343.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP5N2N3" fill="#ff1f32" layoutX="312.0" layoutY="362.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP5N1N4" fill="#ff1f32" layoutX="301.0" layoutY="379.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP4N3N1" fill="#222426" layoutX="344.0" layoutY="342.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP3N3P0" fill="#222426" layoutX="365.0" layoutY="342.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP2N3P1" fill="#222426" layoutX="388.0" layoutY="343.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP1N3P2" fill="#222426" layoutX="412.0" layoutY="343.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP0N3P3" fill="#222426" layoutX="434.0" layoutY="343.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN1N3P4" fill="#222426" layoutX="456.0" layoutY="342.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP4N2P2" fill="#222426" layoutX="334.0" layoutY="361.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP3N2N1" fill="#222426" layoutX="354.0" layoutY="361.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP2N2P0" fill="#222426" layoutX="376.0" layoutY="361.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP1N2P1" fill="#222426" layoutX="397.0" layoutY="361.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP0N2P2" fill="#222426" layoutX="421.0" layoutY="361.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN1N2P3" fill="#222426" layoutX="444.0" layoutY="360.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN2N2P4" fill="#222426" layoutX="464.0" layoutY="360.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP4N1N3" fill="#222426" layoutX="325.0" layoutY="379.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP3N1N2" fill="#222426" layoutX="345.0" layoutY="379.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP2N1N1" fill="#222426" layoutX="366.0" layoutY="379.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP1N1P0" fill="#222426" layoutX="387.0" layoutY="380.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP0N1P1" fill="#222426" layoutX="411.0" layoutY="381.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN1N1P2" fill="#222426" layoutX="434.0" layoutY="380.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN2N1P3" fill="#222426" layoutX="456.0" layoutY="379.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN3N1P4" fill="#222426" layoutX="476.0" layoutY="380.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP4P0N4" fill="#222426" layoutX="314.0" layoutY="400.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP3P0N3" fill="#222426" layoutX="334.0" layoutY="399.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP2P0N2" fill="#222426" layoutX="355.0" layoutY="400.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP1P0N1" fill="#222426" layoutX="377.0" layoutY="400.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP0P0P0" fill="#222426" layoutX="399.0" layoutY="399.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN1P0P1" fill="#222426" layoutX="421.0" layoutY="400.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN2P0P2" fill="#222426" layoutX="443.0" layoutY="400.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN3P0P3" fill="#222426" layoutX="465.0" layoutY="400.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN4P0P4" fill="#222426" layoutX="487.0" layoutY="399.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP4P4N8" fill="#deff1f" layoutX="265.0" layoutY="476.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP4P3N7" fill="#deff1f" layoutX="275.0" layoutY="458.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP3P4N7" fill="#deff1f" layoutX="284.0" layoutY="476.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP4P2N6" fill="#deff1f" layoutX="285.0" layoutY="444.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP3P3N6" fill="#deff1f" layoutX="297.0" layoutY="458.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP2P4N6" fill="#deff1f" layoutX="306.0" layoutY="477.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP1P4N5" fill="#deff1f" layoutX="330.0" layoutY="476.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP2P3N5" fill="#deff1f" layoutX="320.0" layoutY="459.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP3P2N5" fill="#deff1f" layoutX="310.0" layoutY="443.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP4P1N5" fill="#deff1f" layoutX="299.0" layoutY="423.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP3P1N4" fill="#222426" layoutX="323.0" layoutY="420.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP2P1N3" fill="#222426" layoutX="345.0" layoutY="421.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP1P1N2" fill="#222426" layoutX="367.0" layoutY="419.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP0P1N1" fill="#222426" layoutX="389.0" layoutY="420.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN1P1P0" fill="#222426" layoutX="411.0" layoutY="421.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN2P1P1" fill="#222426" layoutX="433.0" layoutY="421.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN3P1P2" fill="#222426" layoutX="455.0" layoutY="421.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN4P1P3" fill="#222426" layoutX="475.0" layoutY="421.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN5P1P4" fill="#311eff" layoutX="501.0" layoutY="422.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP2P2N4" fill="#222426" layoutX="334.0" layoutY="441.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP1P2N3" fill="#222426" layoutX="356.0" layoutY="442.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP0P2N2" fill="#222426" layoutX="378.0" layoutY="439.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN1P2N1" fill="#222426" layoutX="402.0" layoutY="439.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN2P2P0" fill="#222426" layoutX="423.0" layoutY="440.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN3P2P1" fill="#222426" layoutX="444.0" layoutY="441.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN4P2P2" fill="#222426" layoutX="463.0" layoutY="440.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN5P2P3" fill="#311eff" layoutX="488.0" layoutY="441.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN6P2P4" fill="#311eff" layoutX="508.0" layoutY="441.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN5P3P2" fill="#311eff" layoutX="478.0" layoutY="457.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN5P4P1" fill="#311eff" layoutX="468.0" layoutY="473.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN6P3P3" fill="#311eff" layoutX="501.0" layoutY="459.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN6P4P2" fill="#311eff" layoutX="489.0" layoutY="476.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN7P4P3" fill="#311eff" layoutX="512.0" layoutY="476.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN7P3P4" fill="#311eff" layoutX="522.0" layoutY="459.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN8P4P4" fill="#311eff" layoutX="532.0" layoutY="477.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP1P3N4" fill="#222426" layoutX="346.0" layoutY="458.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP0P3N3" fill="#222426" layoutX="369.0" layoutY="458.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN1P3N2" fill="#222426" layoutX="390.0" layoutY="457.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN2P3N1" fill="#222426" layoutX="413.0" layoutY="457.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN3P3P0" fill="#222426" layoutX="433.0" layoutY="458.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN4P3P1" fill="#222426" layoutX="456.0" layoutY="457.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeP0P4N4" fill="#222426" layoutX="355.0" layoutY="473.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN1P4N3" fill="#222426" layoutX="379.0" layoutY="474.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN2P4N2" fill="#222426" layoutX="402.0" layoutY="474.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN3P4N1" fill="#222426" layoutX="423.0" layoutY="473.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN4P4P0" fill="#222426" layoutX="444.0" layoutY="474.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN1P5N4" fill="#ff901f" layoutX="368.0" layoutY="495.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN2P5N3" fill="#ff901f" layoutX="392.0" layoutY="495.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN3P5N2s" fill="#ff901f" layoutX="414.0" layoutY="495.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN4P5N1" fill="#ff901f" layoutX="435.0" layoutY="495.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN4P6N2" fill="#ff901f" layoutX="422.0" layoutY="516.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN3P6N3" fill="#ff901f" layoutX="402.0" layoutY="516.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN2P6N4" fill="#ff901f" layoutX="379.0" layoutY="517.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN3P7N4" fill="#ff901f" layoutX="390.0" layoutY="537.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN4P7N3" fill="#ff901f" layoutX="413.0" layoutY="536.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="holeN4P8N4" fill="#ff901f" layoutX="400.0" layoutY="553.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" />
+      <Group fx:id="marbleGroup" />
     </children>
 </AnchorPane>
