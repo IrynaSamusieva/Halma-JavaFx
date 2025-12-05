@@ -8,6 +8,7 @@ import web.halma.models.board.field.FieldColor;
 import web.halma.models.board.field.FieldState;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Hole {
@@ -76,11 +77,20 @@ public class Hole {
 
     public void clickHandler(){
         this.circle.setOnMouseClicked(event -> {
+            System.out.println("Клик по ЛУНКЕ: " + Arrays.toString(coordinates));
            if(!field.isOccupied()){
+               System.out.println("Лунка свободна.");
                if(BoardController.selected != null){
+                   System.out.println("Шашка выбрана, пытаюсь ходить...");
                    BoardController.selected.move(this);
                }
+               else {
+                   System.out.println("Шашка НЕ выбрана (selected == null)"); // <---
+               }
+           } else {
+               System.out.println("Лунка занята!"); // <---
            }
+            event.consume();
         });
     }
 
