@@ -4,7 +4,6 @@ import javafx.scene.shape.Circle;
 import lombok.Getter;
 import web.halma.controllers.BoardController;
 import web.halma.models.board.field.Field;
-import web.halma.models.board.field.FieldColor;
 import web.halma.models.board.field.FieldState;
 
 import java.util.ArrayList;
@@ -23,15 +22,15 @@ public class Hole {
         return field;
     }
 
-    public Hole(Circle circle, int[] coordinates, FieldState state) {
+    public Hole(Circle circle, int[] coordinates) {
         this.circle = circle;
         this.coordinates = coordinates;
-        this.field = field;
-       // clickHandler();
+        this.field = new Field(FieldState.FREE);
+        clickHandler();
     }
 
     public boolean HoleIsOccupied(){
-        return field.isOccupied(FieldState.OCCUPIED);
+        return field.isOccupied();
     }
 
     public Circle getCircle() {
@@ -42,18 +41,26 @@ public class Hole {
         return coordinates;
     }
 
-    public void setOccupied() {
-        FieldState state = FieldState.OCCUPIED;
+    public void setOccupied(boolean occupied) {
+        if(occupied){
+            FieldState state = FieldState.OCCUPIED;
+            this.field.setState(state);
+        }
+        else{
+            FieldState state = FieldState.FREE;
+            this.field.setState(state);
+        }
+
     }
 
     public void findNeighbours() {
         int[][] neighboursCoordinates = {
-                {1, 0, -1},   // right
-                {1, -1, 0},   // up-right
-                {0, -1, 1},   // up-left
-                {-1, 0, 1},   // left
-                {-1, 1, 0},   // down-left
-                {0, 1, -1}    // down-right
+                {1, 0, -1},   // left
+                {1, -1, 0},   // up-left
+                {0, -1, 1},   // up-right
+                {-1, 0, 1},   // right
+                {-1, 1, 0},   // down-right
+                {0, 1, -1}    // down-left
         };
       for(int i = 0; i<neighboursCoordinates.length; i++){
           int[] newCoordinate = new int[]{coordinates[0] + neighboursCoordinates[i][0],
@@ -66,8 +73,15 @@ public class Hole {
     }
 
 
+    public void clickHandler(){
+        this.circle.setOnMouseClicked(event -> {
+           if(!field.isOccupied()){
+               if(BoardController.selected != null){
+                   BoardController.selected.move(this);
+               }
+           }
+            event.consume();
+        });
+    }
 
-    /*
-    public void clickHandler()
-     */
 }
