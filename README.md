@@ -1,6 +1,7 @@
 # Halma-JavaFx
 
 PRAVIDLÁ HRY
+
 Halma alebo čínske dáma je hra pre 2 až 6 hráčov.
 Cieľom je premiestniť všetky svoje kamene do cieľového rohu v opačnej časti hracej plochy skôr, ako to urobia súperi.
 Tento cieľový roh sa nazýva "domov".
@@ -47,6 +48,9 @@ Resetovanie zvýraznenia (resetColorAllGroup, resetColorHoles).
 
 Screen of gameplay:
    ![img.png](img.png)
+
+
+   
 Biela figúrka je tá figúrka, ktorá bola vybraná a bude sa pohybovať.
 
 Kľúčové koncepty
