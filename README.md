@@ -65,7 +65,8 @@ Base Camps: počiatočné a cieľové zóny pre každý tím.
 
 FXML: Vizualizácia hernej dosky.
 
-Zhrnutie
+Zhrnutie:
+
 Implementácia spája JavaFX UI (Circle, AnchorPane, Group) s hernou logikou (Hole, Piece, BoardController). 
 Výsledkom je plne hrateľná verzia Halma s pravidlami pohybu, skokmi, správou ťahov a kontrolou víťazstva.
 
