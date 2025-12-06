@@ -1,11 +1,14 @@
 package web.halma.config;
 
 import javafx.application.Platform;
+import javafx.scene.paint.Color;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import web.halma.controllers.BoardController;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,53 +18,37 @@ class PieceTest {
     static void initJfx() {
         try {
             Platform.startup(() -> {});
-        } catch (IllegalStateException e) {} // Игнорируем, если уже запущено
+        } catch (IllegalStateException e) {}
     }
 
-    // 2. Подготовка доски перед КАЖДЫМ тестом
     @BeforeEach
     void setUp() {
-        // Инициализируем цвета фишек
         Piece.init();
-
-        // Очищаем и готовим список лунок в контроллере
         BoardController.holes = new ArrayList<>();
-
-        // Создаем лунку-центр (0,0,0) и соседа (1,0,-1)
-        // Нам нужен хотя бы минимальный набор лунок для теста
         createAndAddHole(new int[]{0, 0, 0});
         createAndAddHole(new int[]{1, 0, -1});
-        createAndAddHole(new int[]{2, 0, -2}); // Для теста illegal move
-
-        // ВАЖНО: Заставляем лунки найти друг друга!
+        createAndAddHole(new int[]{2, 0, -2});
         for (Hole h : BoardController.holes) {
             h.findNeighbours();
         }
     }
 
-    // Вспомогательный метод для создания лунки
     private void createAndAddHole(int[] coords) {
-        // null вместо Circle, так как в логике теста графика не важна,
-        // но если класс Hole требует Circle, создадим заглушку
         Hole h = new Hole(new javafx.scene.shape.Circle(), coords);
         BoardController.holes.add(h);
     }
 
     @Test
     public void testMove() {
-        // Теперь getHole вернет реальный объект
         Hole hole1 = BoardController.getHole(new int[] {0, 0, 0});
         Hole hole2 = BoardController.getHole(new int[] {1, 0, -1});
 
         Piece marble = new Piece(hole1, "red");
 
-        // Проверяем начальное положение
         assertEquals(hole1, marble.getHole());
 
-        // Двигаем
         marble.move(hole2);
 
-        // ТЕПЕРЬ СРАБОТАЕТ, так как hole1 знает, что hole2 — его сосед
         assertEquals(hole2, marble.getHole());
         assertTrue(hole2.HoleIsOccupied());
         assertFalse(hole1.HoleIsOccupied());
@@ -71,23 +58,48 @@ class PieceTest {
     public void testLegalMove() {
         Hole startHole = BoardController.getHole(new int[] {0, 0, 0});
         Hole legalDest = BoardController.getHole(new int[] {1, 0, -1});
-        Hole illegalDest = BoardController.getHole(new int[] {2, 0, -2}); // Далеко
+        Hole illegalDest = BoardController.getHole(new int[] {2, 0, -2});
 
         Piece marble = new Piece(startHole, "red");
-        startHole.setOccupied(true); // Piece конструктор не всегда ставит setOccupied, лучше явно
+        startHole.setOccupied(true);
 
-        // 1. Попытка нелегального хода (слишком далеко, не сосед)
         marble.move(illegalDest);
 
-        // Проверяем, что шарик НЕ сдвинулся
         assertEquals(startHole, marble.getHole());
         assertTrue(startHole.HoleIsOccupied());
-
-        // 2. Легальный ход
         marble.move(legalDest);
-
-        // Проверяем, что сдвинулся
         assertEquals(legalDest, marble.getHole());
         assertTrue(legalDest.HoleIsOccupied());
     }
+    @Test
+    public void testWinnerMessages() {
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        Object[][] testCases = {
+                {Color.web("0x008000ff"), "Green"},
+                {Color.web("0x0000ffff"), "Blue"},
+                {Color.web("0xffff00ff"), "Yellow"},
+                {Color.web("0xff0000ff"), "Red"},
+                {Color.web("0xff00ffff"), "Magenta"},
+                {Color.web("0xffa500ff"), "Orange"}
+        };
+        for (Object[] tc : testCases) {
+            Color color = (Color) tc[0];
+            String expectedName = (String) tc[1];
+            String winner = null;
+            switch(color.toString()) {
+                case "0x008000ff": winner = "Green"; break;
+                case "0x0000ffff": winner = "Blue"; break;
+                case "0xffff00ff": winner = "Yellow"; break;
+                case "0xff0000ff": winner = "Red"; break;
+                case "0xff00ffff": winner = "Magenta"; break;
+                case "0xffa500ff": winner = "Orange"; break;
+                default: throw new IllegalStateException("Unexpected value: " + color);
+            }
+            System.out.println("WIN! PLayer " + winner + " won the game!");
+            assertTrue(outContent.toString().contains("WIN! PLayer " + expectedName + " won the game!"),
+                    "This color " + color + " must contain " + expectedName);
+        }
+    }
 }
+

@@ -4,11 +4,9 @@ import javafx.scene.shape.Circle;
 import lombok.Getter;
 import web.halma.controllers.BoardController;
 import web.halma.models.board.field.Field;
-import web.halma.models.board.field.FieldColor;
 import web.halma.models.board.field.FieldState;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Hole {
@@ -57,12 +55,12 @@ public class Hole {
 
     public void findNeighbours() {
         int[][] neighboursCoordinates = {
-                {1, 0, -1},   // right
-                {1, -1, 0},   // up-right
-                {0, -1, 1},   // up-left
-                {-1, 0, 1},   // left
-                {-1, 1, 0},   // down-left
-                {0, 1, -1}    // down-right
+                {1, 0, -1},   // left
+                {1, -1, 0},   // up-left
+                {0, -1, 1},   // up-right
+                {-1, 0, 1},   // right
+                {-1, 1, 0},   // down-right
+                {0, 1, -1}    // down-left
         };
       for(int i = 0; i<neighboursCoordinates.length; i++){
           int[] newCoordinate = new int[]{coordinates[0] + neighboursCoordinates[i][0],
@@ -77,18 +75,10 @@ public class Hole {
 
     public void clickHandler(){
         this.circle.setOnMouseClicked(event -> {
-            System.out.println("Клик по ЛУНКЕ: " + Arrays.toString(coordinates));
            if(!field.isOccupied()){
-               System.out.println("Лунка свободна.");
                if(BoardController.selected != null){
-                   System.out.println("Шашка выбрана, пытаюсь ходить...");
                    BoardController.selected.move(this);
                }
-               else {
-                   System.out.println("Шашка НЕ выбрана (selected == null)"); // <---
-               }
-           } else {
-               System.out.println("Лунка занята!"); // <---
            }
             event.consume();
         });

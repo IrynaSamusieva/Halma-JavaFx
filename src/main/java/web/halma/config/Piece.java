@@ -1,5 +1,6 @@
 package web.halma.config;
 
+import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import lombok.Getter;
@@ -11,10 +12,10 @@ public class Piece extends Circle {
     @Getter
     private Color color;
     @Getter
-    private String group;
-    private static Map<String, Color> colors;
-    @Getter
     private Hole hole;
+    private static Map<String, Color> colors;
+    String winner = "";
+
     public static void init() {
         Map<String, Color> map = new HashMap<>();
         map.put("green", Color.GREEN);
@@ -26,93 +27,137 @@ public class Piece extends Circle {
         colors = Collections.unmodifiableMap(map);
     }
 
-    public Piece( Hole hole,String color) {
-        super(); // Создаем пока без координат
-
+    public Piece(Hole hole, String colorName) {
+        super();
         this.hole = hole;
-        this.color = colors.get(color);
+        String safeColorName = colorName.trim();
+        this.color = colors.get(safeColorName);
+        if (this.color == null) this.color = Color.BLACK;
 
-        // --- ВАЖНОЕ ИЗМЕНЕНИЕ 1: РАДИУС ---
-        // Лунка в FXML имеет радиус 7. Шашка должна быть больше, чтобы перекрывать её.
-        // Ставим 12 или 15. Это решит проблему "промаха" мышкой.
-        this.setRadius(12);
-
-        this.setFill(colors.get(color));
+        this.setRadius(7);
+        this.setFill(this.color);
         this.setStroke(Color.BLACK);
+        this.setStrokeWidth(2);
 
-        // --- ВАЖНОЕ ИЗМЕНЕНИЕ 2: ПРИВЯЗКА ---
-        // Жестко привязываем координаты шашки к центру лунки.
-        // Даже если координаты лунки изменятся, шашка поедет за ней.
-        this.centerXProperty().bind(hole.getCircle().layoutXProperty());
-        this.centerYProperty().bind(hole.getCircle().layoutYProperty());
+        double realX = hole.getCircle().getLayoutX() + hole.getCircle().getCenterX();
+        double realY = hole.getCircle().getLayoutY() + hole.getCircle().getCenterY();
+        this.setCenterX(realX);
+        this.setCenterY(realY);
 
         clickHandler();
     }
 
+    public void move(Hole targetHole){
+        List<Hole> legalMoves = findMove(this.hole);
+        boolean isLegalMove = legalMoves.contains(targetHole);
 
-    public void move(Hole hole){
-        boolean isLegalMove = false;
-        for(Hole legalHole : findMove(this.hole)){
-            if(hole == legalHole){
-                isLegalMove = true;
-            }
-        }
         if (isLegalMove) {
-            this.setCenterX(hole.getCircle().getLayoutX());
-            this.setCenterY(hole.getCircle().getLayoutY());
+            double newX = targetHole.getCircle().getLayoutX() + targetHole.getCircle().getCenterX();
+            double newY = targetHole.getCircle().getLayoutY() + targetHole.getCircle().getCenterY();
+            this.setCenterX(newX);
+            this.setCenterY(newY);
+
             this.hole.setOccupied(false);
-            this.hole = hole;
+            this.hole = targetHole;
             this.hole.setOccupied(true);
-        }
-    }
-    public List<Hole> findMove(Hole current) {
-        List<Hole> possibleMove = new ArrayList<>();
-        for(Hole hole: current.getNeighbours()){
-            if(!hole.HoleIsOccupied()){
-                possibleMove.add(hole);
+
+            if (BoardController.selected != null) {
+                BoardController.selected.resetColor();
+                BoardController.selected = null;
             }
-        }
-        possibleMove.addAll(findJump(current, new ArrayList<>()));
-        //да тут нужно не забыть удалить саму ячейку
-        possibleMove.remove(current);
-        return possibleMove;
-    }
-    public void resetColor(){
-        this.setFill(color);
-    }
-    public List<Hole> findJump(Hole current, List<Hole> jump){
-        jump.add(current);
-        for(Hole neighbor : current.getNeighbours()){
-            if(neighbor.HoleIsOccupied()){
-                for(Hole landingSpot : neighbor.getNeighbours()){
-                    if(!landingSpot.HoleIsOccupied() &&
-                            occupiedOnSameAxis(current, landingSpot) &&
-                            !jump.contains(landingSpot)){
-                        findJump(landingSpot, jump);
-                    }
+            BoardController.resetColorHoles();
+            if (BoardController.checkWinner(this.color)) {
+                switch(this.color.toString()){
+                    case "0x008000ff": winner = "Green"; break;
+                    case "0x0000ffff": winner = "Blue"; break;
+                    case "0xffff00ff":  winner = "Yellow"; break;
+                    case "0xff0000ff":  winner = "Red"; break;
+                    case "0xff00ffff":  winner = "Magenta"; break;
+                    case "0xffa500ff": winner = "Orange"; break;
+                    default: throw new IllegalStateException("Unexpected value: " + this.color);
                 }
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                System.out.println("WIN! PLayer " + winner + " won the game!");
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Конец игры");
+                alert.setHeaderText(null);
+                alert.setContentText("Player " + this.color + " WON!");
+                alert.showAndWait();
+
+                return;
             }
+            BoardController.switchTurn();
+
         }
-        return jump;
     }
-    private boolean occupiedOnSameAxis(Hole current, Hole nieghbour) {
-        return current.getCoordinates()[0] == nieghbour.getCoordinates()[0] ||
-                current.getCoordinates()[1] == nieghbour.getCoordinates()[1] ||
-                current.getCoordinates()[2] == nieghbour.getCoordinates()[2];
-    }
+
     private void clickHandler(){
         this.setOnMouseClicked(event -> {
+
+            if (!BoardController.isMyTurn(this.color)) {
+                event.consume();
+                return;
+            }
             if(this != BoardController.selected){
-                System.out.println("Клик по ШАШКЕ!");
                 if(BoardController.selected != null){
-                    System.out.println("Выбираю новую шашку...");
                     BoardController.selected.resetColor();
                     BoardController.resetColorHoles();
                 }
                 BoardController.selected = this;
                 this.setFill(Color.WHITE);
-                event.consume();
+            } else {
+                BoardController.selected = null;
+                this.resetColor();
+                BoardController.resetColorHoles();
             }
+            event.consume();
         });
+    }
+
+
+    public List<Hole> findMove(Hole current) {
+        List<Hole> possibleMove = new ArrayList<>();
+        for(Hole neighbour : current.getNeighbours()){
+            if(!neighbour.HoleIsOccupied()){
+                possibleMove.add(neighbour);
+            }
+        }
+        List<Hole> visited = new ArrayList<>();
+        visited.add(current);
+        possibleMove.addAll(findJump(current, visited));
+        return possibleMove;
+    }
+
+    public List<Hole> findJump(Hole current, List<Hole> visited){
+        List<Hole> jumps = new ArrayList<>();
+        for(Hole neighbor : current.getNeighbours()){
+            if(neighbor.HoleIsOccupied()){
+                for(Hole landingSpot : neighbor.getNeighbours()){
+                    if(!landingSpot.HoleIsOccupied() &&
+                            occupiedOnSameAxis(current, landingSpot) &&
+                            !visited.contains(landingSpot) &&
+                            !current.getNeighbours().contains(landingSpot)) {
+                        visited.add(landingSpot);
+                        jumps.add(landingSpot);
+                        jumps.addAll(findJump(landingSpot, visited));
+                    }
+                }
+            }
+        }
+        return jumps;
+    }
+
+    private boolean occupiedOnSameAxis(Hole start, Hole end) {
+        return start.getCoordinates()[0] == end.getCoordinates()[0] ||
+                start.getCoordinates()[1] == end.getCoordinates()[1] ||
+                start.getCoordinates()[2] == end.getCoordinates()[2];
+    }
+
+    public void resetColor(){
+        this.setFill(color);
+        this.setStroke(Color.BLACK);
     }
 }
