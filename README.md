@@ -47,10 +47,13 @@ GAME IMPLEMENTATION
    Resetovanie zvýraznenia (resetColorAllGroup, resetColorHoles).
 
 MCTS IMPLEMENTATION
+
 MCTS je heuristický vyhľadávací algoritmus, ktorý sa používa v hrách s rozsiahlym stavovým priestorom.
 Metóda MCTS nevyžaduje úplné vyhodnotenie všetkých možností – simuluje náhodné hry a vytvára rozhodovací strom,
 pričom sa postupne zameriava na sľubné vetvy.
+
 1.Class Node
+
 Uchováva stav a prepojenie s nadradeným uzlom.
 Kopíruje všetky povolené ťahy.
 Vytvorí nový stav a podradený uzol, vráti nový uzol. Ak sú všetky možné ťahy pridané do stromu, je už úplne rozvinutý. Realizuje vzorec UCT. Rieši kľúčový problém: ako vybrať, ktorý uzol ďalej preskúmať – ten, ktorý už vykazuje dobré výsledky (využívanie), alebo ten, ktorý sme ešte takmer nevyskúšali (výskum).
@@ -63,6 +66,7 @@ ako vyzerá vzorec na obrázku:
 
 
 2.Class MonteCarloPlayer
+
 Je stanovený časový limit (v kóde 2 sekundy, podľa potreby môže byť aj dlhší).
 Vytvoríme koreňový uzol (aktuálny stav)
 Kým nevyprší čas (2 sekundy):
@@ -73,6 +77,7 @@ Backpropagation → aktualizujeme štatistiky predkov
 Po uplynutí času vyberieme ťah s najlepšou winrate spomedzi potomkov koreňa
 
 3.Class GameState
+
 Aby mohol MCTS fungovať, potrebuje niekoľko vecí:
 1. Prehľad o stave (šachovnica, na kom je ťah)
 2. Možnosť získať všetky povolené ťahy
