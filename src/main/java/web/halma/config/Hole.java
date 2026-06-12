@@ -7,6 +7,7 @@ import web.halma.models.board.field.Field;
 import web.halma.models.board.field.FieldState;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Hole {
@@ -82,6 +83,19 @@ public class Hole {
            }
             event.consume();
         });
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Hole)) return false;
+        Hole hole = (Hole) o;
+        return Arrays.equals(this.getCoordinates(), hole.getCoordinates());
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(getCoordinates());
     }
 
 }

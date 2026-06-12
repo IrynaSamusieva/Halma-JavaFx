@@ -5,7 +5,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import lombok.Getter;
 import web.halma.controllers.BoardController;
-
 import java.util.*;
 
 public class Piece extends Circle {
@@ -82,9 +81,9 @@ public class Piece extends Circle {
 
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Конец игры");
+                alert.setTitle("The end");
                 alert.setHeaderText(null);
-                alert.setContentText("Player " + this.color + " WON!");
+                alert.setContentText("Player " + winner + " WON!");
                 alert.showAndWait();
 
                 return;
