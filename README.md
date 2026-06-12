@@ -1,6 +1,7 @@
 # Halma-JavaFx
 
 PRAVIDLÁ HRY
+
 Halma alebo čínske dáma je hra pre 2 až 6 hráčov.
 Cieľom je premiestniť všetky svoje kamene do cieľového rohu v opačnej časti hracej plochy skôr, ako to urobia súperi.
 Tento cieľový roh sa nazýva "domov".
@@ -46,17 +47,26 @@ Kontrolu víťazstva (checkWinner()).
 Resetovanie zvýraznenia (resetColorAllGroup, resetColorHoles).
 
 Screen of gameplay:
+
+
    ![img.png](img.png)
+
+
+   
 Biela figúrka je tá figúrka, ktorá bola vybraná a bude sa pohybovať.
 
 Kľúčové koncepty
+
 Kubické koordináty: používajú sa na hexagonálnu mriežku pre výpočet susedov.
 Každý kruh v súbore Board.fxml má svoje vlastné ID, ktoré sa zhoduje s jeho súradnicami. V súbore Coord.chc
 sú súradnice kruhov každého tímu, ktoré potom slúžia ako základ pre implementáciu hernej logiky.
+
 Base Camps: počiatočné a cieľové zóny pre každý tím.
+
 FXML: Vizualizácia hernej dosky.
 
-Zhrnutie
+Zhrnutie:
+
 Implementácia spája JavaFX UI (Circle, AnchorPane, Group) s hernou logikou (Hole, Piece, BoardController). 
 Výsledkom je plne hrateľná verzia Halma s pravidlami pohybu, skokmi, správou ťahov a kontrolou víťazstva.
 
